@@ -78,6 +78,11 @@ def loop_items(arr):
     for i in arr:
         print(f'You look around and see: Item #{i.id}, {i.description}')
 
+def find_items(arr, id):
+    for item in arr:
+        if item.id == id:
+            return item
+
 while True:
     print(new_player)
     choice = input('Are you ready to explore? Please press "y" (or press "q" to quit)')
@@ -89,11 +94,11 @@ while True:
         if choice_1 == "y":
             loop_items(new_player.room_location.items)
             choice_2 = input("If you are interested is taking one of these items enter it's item number now, or you can move along without taking anything. Press any key to continue on")
-            if choice_2 == new_player.room_location.room.items.id:
-                room.itmes.index(id)
-                new_player.inventory.append(room.items.index(id))
-                room.inventory.pop(index(id))
-                print(f'Your backpack now contains: {new_player.inventory.i.description} press any key to move on and keep exploring!'
+            item = find_items(new_player.room_location.items, int(choice_2))
+            if item:
+                new_player.inventory.append(item)
+                new_player.room_location.items.remove(item)
+                print(f'Your backpack now contains: {item.description} press any key to move on and keep exploring!')
 
         choice_3 = input("Which direction do you want to go?")
         if choice_3 == "n":
