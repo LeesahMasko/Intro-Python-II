@@ -76,50 +76,55 @@ new_player = Player("AngryBaby", room["outside"], [])
 
 def loop_items(arr):
     for i in arr:
-        print(f'You look around and see: {i.description}')
+        print(f'You look around and see: Item #{i.id}, {i.description}')
 
 while True:
     print(new_player)
-    choice_1 = input("Would you like to see what items are around?")
-    if choice_1 == "y":
-        loop_items(new_player.room_location.items)
-    if choice_1 == "n":
-        choice_3
-    choice_2 = input("Would you like to take an item?")
-    if choice_2 == "y":
-        pass
-    choice_3 = input("Which direction do you want to go?")
+    choice = input('Are you ready to explore? Please press "y" (or press "q" to quit)')
     if choice == "q":
         break
-    elif choice == "n":
-        if new_player.room_location.n_to:
-            new_player.room_location = new_player.room_location.n_to
+    if choice == "y":
+
+        choice_1 = input("Would you like to see what items are around? If yes, press 'y'. If no, press 'n'")
+        if choice_1 == "y":
+            loop_items(new_player.room_location.items)
+            choice_2 = input("If you are interested is taking one of these items enter it's item number now, or you can move along without taking anything. Press any key to continue on")
+            if choice_2 == new_player.room_location.room.items.id:
+                room.itmes.index(id)
+                new_player.inventory.append(room.items.index(id))
+                room.inventory.pop(index(id))
+                print(f'Your backpack now contains: {new_player.inventory.i.description} press any key to move on and keep exploring!'
+
+        choice_3 = input("Which direction do you want to go?")
+        if choice_3 == "n":
+            if new_player.room_location.n_to:
+                new_player.room_location = new_player.room_location.n_to
+            else:
+                print("There is nothing in that direction, please choose a different direction to go")
+
+        if choice == "s":
+            if new_player.room_location.s_to:
+                new_player.room_location = new_player.room_location.s_to
+            else:
+                print("There is nothing in that direction, please choose a different direction to go")
+
+
+        if choice == "e":
+            if new_player.room_location.e_to:
+                new_player.room_location = new_player.room_location.e_to
+            else:
+                print("There is nothing in that direction, please choose a different direction to go")
+
+
+        if choice == "w":
+            if new_player.room_location.w_to:
+                new_player.room_location = new_player.room_location.w_to
+            else:
+                print("There is nothing in that direction, please choose a different direction to go")
+
+
         else:
-            print("There is nothing in that direction, please choose a different direction to go")
-
-    elif choice == "s":
-        if new_player.room_location.s_to:
-            new_player.room_location = new_player.room_location.s_to
-        else:
-            print("There is nothing in that direction, please choose a different direction to go")
-
-
-    elif choice == "e":
-        if new_player.room_location.e_to:
-            new_player.room_location = new_player.room_location.e_to
-        else:
-            print("There is nothing in that direction, please choose a different direction to go")
-
-
-    elif choice == "w":
-        if new_player.room_location.w_to:
-            new_player.room_location = new_player.room_location.w_to
-        else:
-            print("There is nothing in that direction, please choose a different direction to go")
-
-
-    else:
-        print("Please choose a cardinal direction or press q to quit")
+            print("Please choose a cardinal direction or press q to quit")
 
 
 
