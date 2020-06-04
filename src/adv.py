@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 
 # Declare all the rooms
@@ -35,13 +36,31 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+room["foyer"].items.append(Item(1, "Food", "Bag of old Halloween candy"))
+room["overlook"].items.append(Item(2, "Dental Device", "A tooth retainer"))
+room["narrow"].items.append(Item(3, "Art", "A small statue of Elvis"))
+room["outside"].items.append(Item(4, "Odd Item", "A plactic glove filled with birdseed"))
+room["treasure"].items.append(Item(5, "Mysterious Substance", "A glob of something creamy/gray, perhaps oatmeal"))
+room["overlook"].items.append(Item(6, "Food", "Watermelon"))
+room["outside"].items.append(Item(7, "Food", "Ornate 7 tiered cake"))
+room["narrow"].items.append(Item(8, "Clothing", "Sequin cape"))
+room["overlook"].items.append(Item(9, "Clothing", "One yellow flip-flop"))
+room["outside"].items.append(Item(10, "Food", "Box of Kraft Mac&Cheese"))
+room["foyer"].items.append(Item(11, "Electronics", "Walkman with Hall&Oats tape"))
+room["treasure"].items.append(Item(12, "Food", "Can of yams"))
+room["foyer"].items.append(Item(13, "Animal", "Racoon wearing a fedora"))
+room["foyer"].items.append(Item(14, "Musical Instrument", "Grand piano"))
+room["outside"].items.append(Item(15, "Plant", "Cactus wearing a bowtie"))
+room["outside"].items.append(Item(16, "Electronics", "Box of 90s era cellphones"))
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
-new_player = Player("AngryBaby", room["outside"])
+new_player = Player("AngryBaby", room["outside"], [])
 
 
 # Write a loop that:
@@ -52,12 +71,24 @@ new_player = Player("AngryBaby", room["outside"])
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
-#
+#  sentence = f'x is {x}, y is {round(y, 2)}, z is "{z}"'
 # If the user enters "q", quit the game.
+
+def loop_items(arr):
+    for i in arr:
+        print(f'You look around and see: {i.description}')
 
 while True:
     print(new_player)
-    choice = input("Which direction do you want to go?")
+    choice_1 = input("Would you like to see what items are around?")
+    if choice_1 == "y":
+        loop_items(new_player.room_location.items)
+    if choice_1 == "n":
+        choice_3
+    choice_2 = input("Would you like to take an item?")
+    if choice_2 == "y":
+        pass
+    choice_3 = input("Which direction do you want to go?")
     if choice == "q":
         break
     elif choice == "n":
