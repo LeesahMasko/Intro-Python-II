@@ -95,7 +95,7 @@ while True:
             print(new_player)
             choice_1 = input("Would you like to see what items are around? If yes, press 'y'. If no, press 'n', or press 'q' to quit")
             if choice_1 == "q":
-                exit
+                exit()
             if choice_1 == "y":
                 loop_items(new_player.room_location.items)
 
