@@ -86,14 +86,13 @@ def loopBackpack_items(arr):
     for i in arr:
         print(f"Your backpack curently contains Item #{i.id}, {i.description}")
 while True:
-    print(new_player)
+    # print(new_player)
     choice = input('Are you ready to explore? Please press "y" (or press "q" to quit)')
     if choice == "q":
         break
     if choice == "y":
-        pass
         while True:
-            print(new_player.name)
+            print(new_player)
             choice_1 = input("Would you like to see what items are around? If yes, press 'y'. If no, press 'n', or press 'q' to quit")
             if choice_1 == "q":
                 exit
@@ -101,22 +100,20 @@ while True:
                 loop_items(new_player.room_location.items)
 
             choice_take = input("If you are interested is taking one of these items enter it's item number now, or press 'p' to pass along without taking anything")
-            if choice_take == 'p':
-                pass
-            item = find_items(new_player.room_location.items, int(choice_take))
-            if item:
-                new_player.inventory.append(item)
-                new_player.room_location.items.remove(item)
-                print(f'You just added {item.description} to your backpack! Cool!!!')
-                # print(f'Your backpack now contains: {new_player.inventory} press any key to move on and keep exploring!')
-        # while True:
-                backpack_contents = loopBackpack_items(new_player.inventory)
+            if choice_take != 'p':
+                item = find_items(new_player.room_location.items, int(choice_take))
+                if item:
+                    new_player.inventory.append(item)
+                    new_player.room_location.items.remove(item)
+                    print(f'You just added {item.description} to your backpack! Cool!!!')
+                    # print(f'Your backpack now contains: {new_player.inventory} press any key to move on and keep exploring!')
+
+                    backpack_contents = loopBackpack_items(new_player.inventory)
                 # print("Your backpack curently contains Item #{i.id}, {i.description}")
-                choice_leave = input("Do you want to leave an item from your backpack at this location? If so, enter it's item number now. or press 'p' to pass along without leaving anything")
-                if choice_take == 'p':
-                    pass
-                # if choice_leave == "y":
-                #     loop_items(new_player.inventory.items)
+            choice_leave = input("Do you want to leave an item from your backpack at this location? If so, enter it's item number now. or press 'p' to pass along without leaving anything")
+            if choice_leave != 'p':
+            # if choice_leave == "y":
+            #     loop_items(new_player.inventory.items)
                 item = find_items(new_player.inventory, int(choice_leave))
                 if item:
                     new_player.inventory.remove(item)
@@ -130,37 +127,35 @@ while True:
                 #     new_player.room_location.items.remove(item)
                 #     print(f'Your backpack now contains: {item.description} press any key to move on and keep exploring!'
 
-                choice_3 = input("Which direction do you want to go? or press 'q' to quit")
-                if choice_3 == "q":
-                    break
-                if choice_3 == "n":
-                    if new_player.room_location.n_to:
-                        new_player.room_location = new_player.room_location.n_to
-                    else:
-                        print("There is nothing in that direction, please choose a different direction to go")
-
-                if choice == "s":
-                    if new_player.room_location.s_to:
-                        new_player.room_location = new_player.room_location.s_to
-                    else:
-                        print("There is nothing in that direction, please choose a different direction to go")
-
-                if choice == "e":
-                    if new_player.room_location.e_to:
-                        new_player.room_location = new_player.room_location.e_to
-                    else:
-                        print("There is nothing in that direction, please choose a different direction to go")
-
-
-                if choice == "w":
-                    if new_player.room_location.w_to:
-                        new_player.room_location = new_player.room_location.w_to
-                    else:
-                        print("There is nothing in that direction, please choose a different direction to go")
-
-
+            choice_3 = input("Which direction do you want to go? or press 'q' to quit")
+            if choice_3 == "q":
+                break
+            elif choice_3 == "n":
+                if new_player.room_location.n_to:
+                    new_player.room_location = new_player.room_location.n_to
                 else:
-                    print("Please choose a cardinal direction, or press q to quit")
+                    print("There is nothing in that direction, please choose a different direction to go")
+
+            elif choice == "s":
+                if new_player.room_location.s_to:
+                    new_player.room_location = new_player.room_location.s_to
+                else:
+                    print("There is nothing in that direction, please choose a different direction to go")
+
+            elif choice == "e":
+                if new_player.room_location.e_to:
+                    new_player.room_location = new_player.room_location.e_to
+                else:
+                    print("There is nothing in that direction, please choose a different direction to go")
+
+
+            elif choice == "w":
+                if new_player.room_location.w_to:
+                    new_player.room_location = new_player.room_location.w_to
+                else:
+                    print("There is nothing in that direction, please choose a different direction to go")
+            else:
+                print("Please choose a cardinal direction, or press q to quit")
 
 
 
